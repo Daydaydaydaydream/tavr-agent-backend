@@ -1,0 +1,118 @@
+{
+  "contract_version": "2.0.0",
+  "cases": [
+    {
+      "id": "Q01",
+      "events": [
+        "initial: no CT result yet",
+        "CT constructor finishes",
+        "Control reads state"
+      ],
+      "expected": "First request reflects queried final CT state, even when constructor signal was missed."
+    },
+    {
+      "id": "Q02",
+      "events": [
+        "saved at revision 4",
+        "delete point",
+        "add point"
+      ],
+      "expected": "count=3, prosthesis=needs_reposition, save_status=not_started, saved_revision=4; not ready until explicit placement succeeds."
+    },
+    {
+      "id": "Q03",
+      "events": [
+        "build job input token=7",
+        "point changes, token=8",
+        "job 7 finishes"
+      ],
+      "expected": "Discard job 7 result; no actors or ready state applied; no worker accesses GUI."
+    },
+    {
+      "id": "Q04",
+      "events": [
+        "request A, revision=12",
+        "refresh request B, revision=12",
+        "A succeeds after B"
+      ],
+      "expected": "Only B may update UI; request ID plus generation prevents stale same-state response."
+    },
+    {
+      "id": "Q05",
+      "events": [
+        "request A, revision=12",
+        "state revision becomes 13",
+        "A fails"
+      ],
+      "expected": "Ignore stale failure as well as stale success; clear old action immediately on state change."
+    },
+    {
+      "id": "Q06",
+      "events": [
+        "save captured version=4",
+        "commit succeeds"
+      ],
+      "expected": "save_status=succeeded, saved_revision=4; synchronous implementation disallows reentrant editing during save."
+    },
+    {
+      "id": "Q07",
+      "events": [
+        "saved_revision=4",
+        "attempt new save fails"
+      ],
+      "expected": "Retain saved_revision=4; record SAVE_WRITE_FAILED; no success message."
+    },
+    {
+      "id": "Q08",
+      "events": [
+        "segmentation running",
+        "user closes window"
+      ],
+      "expected": "Reject close until worker terminal completion; no Model/Control destruction while workers remain."
+    },
+    {
+      "id": "Q09",
+      "events": [
+        "click guidance focus_save_plan"
+      ],
+      "expected": "Navigate to page_navigation and focus pb_savePlan only; no file write until ordinary save click."
+    },
+    {
+      "id": "Q10",
+      "events": [
+        "change prosthesis dimensions only",
+        "matrix unchanged"
+      ],
+      "expected": "No plan_revision increment; UI always says specification parameters are not saved; rebuild state still reported."
+    },
+    {
+      "id": "Q11",
+      "events": [
+        "unknown reason/action/protocol from service"
+      ],
+      "expected": "Protocol error and disabled guidance action; do not execute or parse message."
+    },
+    {
+      "id": "Q12",
+      "events": [
+        "toggle wireframe or opacity"
+      ],
+      "expected": "No persistent content revision change; if rebuilding geometry expose running until valid result is applied."
+    },
+    {
+      "id": "Q13",
+      "events": [
+        "point count less than 3",
+        "user triggers save via keyboard"
+      ],
+      "expected": "SAVE_PRECONDITION_FAILED; saved revision unchanged; point guidance remains primary."
+    },
+    {
+      "id": "Q14",
+      "events": [
+        "V2 client reaches V1-only server"
+      ],
+      "expected": "404 means version mismatch; no automatic downgrade; explicit config v1 restores V1."
+    }
+  ]
+}

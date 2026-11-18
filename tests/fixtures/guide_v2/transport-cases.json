@@ -1,0 +1,94 @@
+{
+  "contract_version": "2.0.0",
+  "cases": [
+    {
+      "id": "invalid_json",
+      "content_type": "application/json",
+      "body": "{",
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": null,
+        "error": {
+          "code": "INVALID_JSON",
+          "message": "请求不是有效的 JSON 对象。",
+          "details": [
+            {
+              "code": "INVALID_JSON",
+              "field": "$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "wrong_content_type",
+      "content_type": "text/plain",
+      "body": "{}",
+      "expected_status": 415,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": null,
+        "error": {
+          "code": "UNSUPPORTED_MEDIA_TYPE",
+          "message": "请求必须使用 application/json。",
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "oversize",
+      "content_type": "application/json",
+      "body_repeat": {
+        "text": "x",
+        "count": 16385
+      },
+      "expected_status": 413,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": null,
+        "error": {
+          "code": "REQUEST_TOO_LARGE",
+          "message": "引导请求超过 16384 字节限制。",
+          "details": []
+        }
+      }
+    },
+    {
+      "id": "non_object",
+      "content_type": "application/json",
+      "body": "[]",
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": null,
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "INVALID_TYPE",
+              "field": "$"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "internal_error",
+      "content_type": "application/json",
+      "body": "{\"protocol_version\": \"2\", \"request_id\": \"c62ef01e-8c51-44b9-a88a-e70c743bb80f\", \"state_revision\": 12, \"state\": {\"current_page\": \"page_selectPoint\", \"ct_status\": \"succeeded\", \"segmentation_status\": \"not_started\", \"segmentation_result_available\": false, \"segmentation_error_code\": null, \"picked_point_count\": 0, \"prosthesis_status\": \"absent\", \"prosthesis_error_code\": null, \"plan_revision\": 0, \"saved_plan_revision\": null, \"save_status\": \"not_started\", \"save_error_code\": null}, \"supported_actions\": [\"open_segmentation\", \"open_point_picking\", \"open_prosthesis_settings\", \"focus_save_plan\"]}",
+      "fault": "inject exception after successful validation",
+      "expected_status": 500,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INTERNAL_ERROR",
+          "message": "引导服务暂不可用，请稍后重试。",
+          "details": []
+        }
+      }
+    }
+  ]
+}

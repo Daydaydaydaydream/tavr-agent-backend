@@ -47,5 +47,14 @@ python -m pytest
 
 - [详细设计](docs/design.md)：范围、架构、契约、决策表、Qt 对接、错误处理、部署与迭代计划。
 - [Qt 接入示例](docs/qt-integration.md)：Qt 6 请求代码、动作白名单、超时和过期响应处理。
+- [RCVIPlan（Qt）开发规划](docs/rcviplan-development-plan.md)：阶段路线、Qt 状态与内部接口设计、开发步骤及验收。
+- [Backend 开发规划](docs/backend-development-plan.md)：阶段路线、开发前 V2 HTTP 契约设计、规则实现及兼容交付。
 
 依赖文件指定兼容范围，未锁定全部传递依赖。交付部署前，应在目标环境验证并冻结完整依赖版本；这份初始化项目尚未包含生产发布流水线。
+
+### V2 开发前接口设计
+
+- [正式接口设计（2.0.0）](docs/contracts/guide-v2-interface-design.md)：两端状态、HTTP 契约、Qt 内部接口及实现边界。
+- [OpenAPI 3.1](docs/contracts/guide-v2.openapi.yaml)、[共享验收样例](tests/fixtures/guide_v2/README.md)、[设计检查记录](docs/contracts/validation-report.md)。
+
+V2 当前仅完成设计，接口尚未实现；现有 V1 启动与调用方式不变。

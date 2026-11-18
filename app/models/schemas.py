@@ -16,6 +16,9 @@ class SoftwareState(BaseModel):
     ct_loaded: bool = False
     annulus_plane_confirmed: bool = False
     measurement_completed: bool = False
+    # Optional for existing V1 clients; latest attempt and available result differ.
+    segmentation_status: Literal["not_started", "running", "succeeded", "failed"] | None = None
+    segmentation_result_available: bool = False
 
 
 class GuideRequest(BaseModel):

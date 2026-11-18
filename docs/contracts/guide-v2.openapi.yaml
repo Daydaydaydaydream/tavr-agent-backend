@@ -1,0 +1,547 @@
+openapi: 3.1.0
+info:
+  title: RCVIPlan Guidance V2 Contract
+  version: 2.0.0
+  description: 'Design baseline; endpoint not implemented. Full normative rules: guide-v2-interface-design.md.
+    V1 remains unchanged.'
+servers:
+- url: http://127.0.0.1:8000
+paths:
+  /api/v2/agent/guide:
+    post:
+      operationId: guideV2
+      summary: 依据 Qt 的完整软件状态快照提供操作引导
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GuideRequest'
+            example:
+              protocol_version: '2'
+              request_id: c62ef01e-8c51-44b9-a88a-e70c743bb80f
+              state_revision: 12
+              state:
+                current_page: page_selectPoint
+                ct_status: succeeded
+                segmentation_status: failed
+                segmentation_result_available: true
+                segmentation_error_code: SEG_PERSIST_FAILED
+                picked_point_count: 3
+                prosthesis_status: ready
+                prosthesis_error_code: null
+                plan_revision: 4
+                saved_plan_revision: 4
+                save_status: succeeded
+                save_error_code: null
+              supported_actions:
+              - open_segmentation
+              - open_point_picking
+              - open_prosthesis_settings
+              - focus_save_plan
+      responses:
+        '200':
+          description: 成功：完整引导和独立分割提示
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GuideResponse'
+              example:
+                protocol_version: '2'
+                request_id: c62ef01e-8c51-44b9-a88a-e70c743bb80f
+                state_revision: 12
+                rule_version: rcviplan-guidance/1.0.0
+                reason_code: PLAN_SAVED
+                severity: info
+                next_action: null
+                message: 当前取点与定位矩阵已保存（不含假体规格）。
+                alerts:
+                - reason_code: SEGMENTATION_FAILED
+                  severity: warning
+                  next_action: open_segmentation
+                  message: 本次分割失败；已有分割结果仍可用。可前往分割页面查看并重试。
+        '413':
+          description: 请求体过大
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '415':
+          description: Content-Type 不支持
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: JSON、字段或状态校验失败
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: 服务异常
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-request-body-max-bytes: 16384
+      x-invariants:
+      - Cross-request checks R01-R03 and integer lexical policy are normative in the
+        Markdown contract.
+components:
+  schemas:
+    Action:
+      type: string
+      enum:
+      - open_segmentation
+      - open_point_picking
+      - open_prosthesis_settings
+      - focus_save_plan
+    OperationStatus:
+      type: string
+      enum:
+      - not_started
+      - running
+      - succeeded
+      - failed
+    Severity:
+      type: string
+      enum:
+      - info
+      - warning
+      - error
+    Uuid:
+      type: string
+      format: uuid
+      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$
+      description: Qt 生成的小写、无花括号 UUID v4；响应逐字回传。
+    Revision:
+      type: integer
+      minimum: 0
+      maximum: 9007199254740991
+    ProsthesisStatus:
+      type: string
+      enum:
+      - absent
+      - needs_reposition
+      - running
+      - failed
+      - ready
+    SegmentationErrorCode:
+      type:
+      - string
+      - 'null'
+      enum:
+      - SEG_CONFIG_INVALID
+      - SEG_INPUT_INVALID
+      - SEG_ENGINE_FAILED
+      - SEG_RESULT_INVALID
+      - SEG_PERSIST_FAILED
+      - SEG_INTERNAL_ERROR
+      - null
+    ProsthesisErrorCode:
+      type:
+      - string
+      - 'null'
+      enum:
+      - PRO_INPUT_INVALID
+      - PRO_BUILD_FAILED
+      - PRO_PLACEMENT_FAILED
+      - PRO_INTERNAL_ERROR
+      - null
+    SaveErrorCode:
+      type:
+      - string
+      - 'null'
+      enum:
+      - SAVE_PRECONDITION_FAILED
+      - SAVE_WRITE_FAILED
+      - SAVE_INTERNAL_ERROR
+      - null
+    WorkflowState:
+      type: object
+      additionalProperties: false
+      properties:
+        current_page:
+          type: string
+          minLength: 1
+          maxLength: 128
+          pattern: \S
+        ct_status:
+          $ref: '#/components/schemas/OperationStatus'
+        segmentation_status:
+          $ref: '#/components/schemas/OperationStatus'
+        segmentation_result_available:
+          type: boolean
+        segmentation_error_code:
+          $ref: '#/components/schemas/SegmentationErrorCode'
+        picked_point_count:
+          type: integer
+          minimum: 0
+          maximum: 3
+        prosthesis_status:
+          $ref: '#/components/schemas/ProsthesisStatus'
+        prosthesis_error_code:
+          $ref: '#/components/schemas/ProsthesisErrorCode'
+        plan_revision:
+          $ref: '#/components/schemas/Revision'
+        saved_plan_revision:
+          anyOf:
+          - $ref: '#/components/schemas/Revision'
+          - type: 'null'
+        save_status:
+          $ref: '#/components/schemas/OperationStatus'
+        save_error_code:
+          $ref: '#/components/schemas/SaveErrorCode'
+      required:
+      - current_page
+      - ct_status
+      - segmentation_status
+      - segmentation_result_available
+      - segmentation_error_code
+      - picked_point_count
+      - prosthesis_status
+      - prosthesis_error_code
+      - plan_revision
+      - saved_plan_revision
+      - save_status
+      - save_error_code
+      allOf:
+      - if:
+          properties:
+            segmentation_status:
+              enum:
+              - failed
+          required:
+          - segmentation_status
+        then:
+          properties:
+            segmentation_error_code:
+              type: string
+        else:
+          properties:
+            segmentation_error_code:
+              type: 'null'
+      - if:
+          properties:
+            prosthesis_status:
+              enum:
+              - failed
+          required:
+          - prosthesis_status
+        then:
+          properties:
+            prosthesis_error_code:
+              type: string
+        else:
+          properties:
+            prosthesis_error_code:
+              type: 'null'
+      - if:
+          properties:
+            save_status:
+              enum:
+              - failed
+          required:
+          - save_status
+        then:
+          properties:
+            save_error_code:
+              type: string
+        else:
+          properties:
+            save_error_code:
+              type: 'null'
+      - if:
+          properties:
+            ct_status:
+              enum:
+              - not_started
+              - running
+              - failed
+          required:
+          - ct_status
+        then:
+          properties:
+            picked_point_count:
+              const: 0
+            prosthesis_status:
+              const: absent
+            segmentation_status:
+              const: not_started
+            segmentation_result_available:
+              const: false
+            save_status:
+              const: not_started
+            saved_plan_revision:
+              type: 'null'
+            plan_revision:
+              const: 0
+      - if:
+          properties:
+            prosthesis_status:
+              enum:
+              - ready
+              - running
+              - failed
+          required:
+          - prosthesis_status
+        then:
+          properties:
+            ct_status:
+              const: succeeded
+            picked_point_count:
+              const: 3
+      - if:
+          properties:
+            prosthesis_status:
+              enum:
+              - needs_reposition
+          required:
+          - prosthesis_status
+        then:
+          properties:
+            ct_status:
+              const: succeeded
+      - if:
+          properties:
+            segmentation_status:
+              enum:
+              - succeeded
+          required:
+          - segmentation_status
+        then:
+          properties:
+            segmentation_result_available:
+              const: true
+      - if:
+          properties:
+            segmentation_status:
+              enum:
+              - not_started
+          required:
+          - segmentation_status
+        then:
+          properties:
+            segmentation_result_available:
+              const: false
+      - if:
+          properties:
+            save_status:
+              enum:
+              - running
+              - succeeded
+          required:
+          - save_status
+        then:
+          properties:
+            prosthesis_status:
+              const: ready
+            picked_point_count:
+              const: 3
+            ct_status:
+              const: succeeded
+      - if:
+          properties:
+            save_status:
+              enum:
+              - succeeded
+          required:
+          - save_status
+        then:
+          properties:
+            saved_plan_revision:
+              type: integer
+      x-invariants:
+      - id: I09
+        rule: saved_plan_revision == null or saved_plan_revision <= plan_revision
+        field: state.saved_plan_revision
+    GuideRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        protocol_version:
+          type: string
+          const: '2'
+        request_id:
+          $ref: '#/components/schemas/Uuid'
+        state_revision:
+          $ref: '#/components/schemas/Revision'
+        state:
+          $ref: '#/components/schemas/WorkflowState'
+        supported_actions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Action'
+          maxItems: 4
+          uniqueItems: true
+      required:
+      - protocol_version
+      - request_id
+      - state_revision
+      - state
+      - supported_actions
+    GuidanceAlert:
+      type: object
+      additionalProperties: false
+      properties:
+        reason_code:
+          type: string
+          enum:
+          - SEGMENTATION_RUNNING
+          - SEGMENTATION_FAILED
+        message:
+          type: string
+          minLength: 1
+          maxLength: 1024
+        next_action:
+          type:
+          - string
+          - 'null'
+          enum:
+          - open_segmentation
+          - open_point_picking
+          - open_prosthesis_settings
+          - focus_save_plan
+          - null
+        severity:
+          $ref: '#/components/schemas/Severity'
+      required:
+      - reason_code
+      - message
+      - next_action
+      - severity
+    GuideResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        protocol_version:
+          type: string
+          const: '2'
+        request_id:
+          $ref: '#/components/schemas/Uuid'
+        state_revision:
+          $ref: '#/components/schemas/Revision'
+        rule_version:
+          type: string
+          minLength: 1
+          maxLength: 64
+        reason_code:
+          type: string
+          enum:
+          - CT_NOT_READY
+          - CT_LOADING
+          - CT_LOAD_FAILED
+          - PLAN_SAVING
+          - POINTS_INCOMPLETE
+          - PROSTHESIS_BUILDING
+          - PROSTHESIS_FAILED
+          - PROSTHESIS_NOT_CREATED
+          - PROSTHESIS_NEEDS_REPOSITION
+          - PLAN_SAVE_FAILED
+          - PLAN_UNSAVED
+          - PLAN_SAVED
+        message:
+          type: string
+          minLength: 1
+          maxLength: 1024
+        next_action:
+          type:
+          - string
+          - 'null'
+          enum:
+          - open_segmentation
+          - open_point_picking
+          - open_prosthesis_settings
+          - focus_save_plan
+          - null
+        severity:
+          $ref: '#/components/schemas/Severity'
+        alerts:
+          type: array
+          items:
+            $ref: '#/components/schemas/GuidanceAlert'
+          maxItems: 1
+      required:
+      - protocol_version
+      - request_id
+      - state_revision
+      - rule_version
+      - reason_code
+      - message
+      - next_action
+      - severity
+      - alerts
+      x-invariants:
+      - id: R01
+        rule: request_id and state_revision must equal the originating request
+      - id: R02
+        rule: each non-null next_action must occur in request.supported_actions
+      - id: R03
+        rule: primary decision and alerts must match decision-table.json; rule_version
+          is rcviplan-guidance/1.0.0
+    ErrorDetail:
+      type: object
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+          enum:
+          - INVALID_JSON
+          - MISSING_FIELD
+          - UNKNOWN_FIELD
+          - INVALID_TYPE
+          - OUT_OF_RANGE
+          - INVALID_ENUM
+          - INVALID_FORMAT
+          - DUPLICATE_ITEM
+          - INCONSISTENT_STATE
+        field:
+          type: string
+          minLength: 1
+          maxLength: 128
+      required:
+      - code
+      - field
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        protocol_version:
+          type: string
+          const: '2'
+        request_id:
+          anyOf:
+          - $ref: '#/components/schemas/Uuid'
+          - type: 'null'
+        error:
+          type: object
+          additionalProperties: false
+          properties:
+            code:
+              type: string
+              enum:
+              - INVALID_JSON
+              - INVALID_REQUEST
+              - INCONSISTENT_STATE
+              - UNSUPPORTED_MEDIA_TYPE
+              - REQUEST_TOO_LARGE
+              - INTERNAL_ERROR
+            message:
+              type: string
+              minLength: 1
+              maxLength: 1024
+            details:
+              type: array
+              items:
+                $ref: '#/components/schemas/ErrorDetail'
+              maxItems: 32
+          required:
+          - code
+          - message
+          - details
+      required:
+      - protocol_version
+      - request_id
+      - error

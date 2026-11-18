@@ -1,0 +1,2044 @@
+{
+  "contract_version": "2.0.0",
+  "cases": [
+    {
+      "id": "ct_not_started",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "not_started",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "CT_NOT_READY",
+        "severity": "info",
+        "next_action": null,
+        "message": "尚未加载有效 CT，请从主程序打开病例。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "ct_running",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "running",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "CT_LOADING",
+        "severity": "info",
+        "next_action": null,
+        "message": "正在加载 CT，请等待。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "ct_failed",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "failed",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "CT_LOAD_FAILED",
+        "severity": "error",
+        "next_action": null,
+        "message": "CT 加载失败，请从主程序重新打开有效病例。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "points_0",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "POINTS_INCOMPLETE",
+        "severity": "info",
+        "next_action": "open_point_picking",
+        "message": "已选取 0 个点，请继续选取剩余 3 个点。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "points_1",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 1,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 1,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "POINTS_INCOMPLETE",
+        "severity": "info",
+        "next_action": "open_point_picking",
+        "message": "已选取 1 个点，请继续选取剩余 2 个点。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "points_2",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 2,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 2,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "POINTS_INCOMPLETE",
+        "severity": "info",
+        "next_action": "open_point_picking",
+        "message": "已选取 2 个点，请继续选取剩余 1 个点。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "three_points_no_model",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 3,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PROSTHESIS_NOT_CREATED",
+        "severity": "info",
+        "next_action": "open_prosthesis_settings",
+        "message": "已完成三点取点，请打开假体设置并创建模型。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "model_building",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "running",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PROSTHESIS_BUILDING",
+        "severity": "info",
+        "next_action": null,
+        "message": "正在更新假体模型，请等待。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "model_failed",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "failed",
+          "prosthesis_error_code": "PRO_BUILD_FAILED",
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PROSTHESIS_FAILED",
+        "severity": "error",
+        "next_action": "open_prosthesis_settings",
+        "message": "假体模型或定位更新失败，请检查点位与参数后重试。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "needs_reposition",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "needs_reposition",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PROSTHESIS_NEEDS_REPOSITION",
+        "severity": "warning",
+        "next_action": "open_prosthesis_settings",
+        "message": "点位已变化，请按当前三点重新定位假体。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "deleted_point",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 2,
+          "prosthesis_status": "needs_reposition",
+          "prosthesis_error_code": null,
+          "plan_revision": 5,
+          "saved_plan_revision": 4,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "POINTS_INCOMPLETE",
+        "severity": "info",
+        "next_action": "open_point_picking",
+        "message": "已选取 2 个点，请继续选取剩余 1 个点。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "save_running",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "running",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PLAN_SAVING",
+        "severity": "info",
+        "next_action": null,
+        "message": "正在保存取点与定位矩阵，请等待。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "save_failed",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "failed",
+          "save_error_code": "SAVE_WRITE_FAILED"
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PLAN_SAVE_FAILED",
+        "severity": "error",
+        "next_action": "focus_save_plan",
+        "message": "取点与定位矩阵保存失败，请检查本地错误提示后重试。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "unsaved",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PLAN_UNSAVED",
+        "severity": "info",
+        "next_action": "focus_save_plan",
+        "message": "当前取点与定位矩阵尚未保存，请保存定位结果。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "saved",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": 4,
+          "save_status": "succeeded",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PLAN_SAVED",
+        "severity": "info",
+        "next_action": null,
+        "message": "当前取点与定位矩阵已保存（不含假体规格）。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "edited_after_save",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": 3,
+          "save_status": "succeeded",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PLAN_UNSAVED",
+        "severity": "info",
+        "next_action": "focus_save_plan",
+        "message": "当前取点与定位矩阵尚未保存，请保存定位结果。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "seg_running_points",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "running",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 1,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "POINTS_INCOMPLETE",
+        "severity": "info",
+        "next_action": "open_point_picking",
+        "message": "已选取 1 个点，请继续选取剩余 2 个点。",
+        "alerts": [
+          {
+            "reason_code": "SEGMENTATION_RUNNING",
+            "severity": "info",
+            "next_action": null,
+            "message": "分割正在进行，其他可用操作仍可继续。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "seg_failed_no_result",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "failed",
+          "segmentation_result_available": false,
+          "segmentation_error_code": "SEG_ENGINE_FAILED",
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "POINTS_INCOMPLETE",
+        "severity": "info",
+        "next_action": "open_point_picking",
+        "message": "已选取 0 个点，请继续选取剩余 3 个点。",
+        "alerts": [
+          {
+            "reason_code": "SEGMENTATION_FAILED",
+            "severity": "warning",
+            "next_action": "open_segmentation",
+            "message": "本次分割失败；当前没有可用分割结果。可前往分割页面重试。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "seg_failed_saved",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "failed",
+          "segmentation_result_available": true,
+          "segmentation_error_code": "SEG_PERSIST_FAILED",
+          "picked_point_count": 3,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": 4,
+          "save_status": "succeeded",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PLAN_SAVED",
+        "severity": "info",
+        "next_action": null,
+        "message": "当前取点与定位矩阵已保存（不含假体规格）。",
+        "alerts": [
+          {
+            "reason_code": "SEGMENTATION_FAILED",
+            "severity": "warning",
+            "next_action": "open_segmentation",
+            "message": "本次分割失败；已有分割结果仍可用。可前往分割页面查看并重试。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cache_hit",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "succeeded",
+          "segmentation_result_available": true,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "POINTS_INCOMPLETE",
+        "severity": "info",
+        "next_action": "open_point_picking",
+        "message": "已选取 0 个点，请继续选取剩余 3 个点。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "save_and_seg_running",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "running",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "running",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PLAN_SAVING",
+        "severity": "info",
+        "next_action": null,
+        "message": "正在保存取点与定位矩阵，请等待。",
+        "alerts": [
+          {
+            "reason_code": "SEGMENTATION_RUNNING",
+            "severity": "info",
+            "next_action": null,
+            "message": "分割正在进行，其他可用操作仍可继续。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "no_action_supported",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": []
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "POINTS_INCOMPLETE",
+        "severity": "info",
+        "next_action": null,
+        "message": "已选取 0 个点，请继续选取剩余 3 个点。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "primary_supported_alert_not",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "failed",
+          "segmentation_result_available": false,
+          "segmentation_error_code": "SEG_CONFIG_INVALID",
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_point_picking"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "POINTS_INCOMPLETE",
+        "severity": "info",
+        "next_action": "open_point_picking",
+        "message": "已选取 0 个点，请继续选取剩余 3 个点。",
+        "alerts": [
+          {
+            "reason_code": "SEGMENTATION_FAILED",
+            "severity": "warning",
+            "next_action": null,
+            "message": "本次分割失败；当前没有可用分割结果。可前往分割页面重试。"
+          }
+        ]
+      }
+    },
+    {
+      "id": "reposition_failure",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "failed",
+          "prosthesis_error_code": "PRO_PLACEMENT_FAILED",
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PROSTHESIS_FAILED",
+        "severity": "error",
+        "next_action": "open_prosthesis_settings",
+        "message": "假体模型或定位更新失败，请检查点位与参数后重试。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "retry_success_after_failure",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": 4,
+          "save_status": "succeeded",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 200,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "rule_version": "rcviplan-guidance/1.0.0",
+        "reason_code": "PLAN_SAVED",
+        "severity": "info",
+        "next_action": null,
+        "message": "当前取点与定位矩阵已保存（不含假体规格）。",
+        "alerts": []
+      }
+    },
+    {
+      "id": "missing_state",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "MISSING_FIELD",
+              "field": "state"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "extra_field",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null,
+          "extra": true
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "UNKNOWN_FIELD",
+              "field": "state"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bool_as_count",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": true,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "INVALID_TYPE",
+              "field": "state.picked_point_count"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "string_bool",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": "false",
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "INVALID_TYPE",
+              "field": "state.segmentation_result_available"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "count_out_of_range",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 4,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "OUT_OF_RANGE",
+              "field": "state.picked_point_count"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "unknown_action",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "execute_script"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "INVALID_ENUM",
+              "field": "supported_actions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "duplicate_action",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_point_picking",
+          "open_point_picking"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "DUPLICATE_ITEM",
+              "field": "supported_actions"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "bad_uuid",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "bad",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": null,
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "INVALID_FORMAT",
+              "field": "request_id"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "null_state",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": null,
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "INVALID_TYPE",
+              "field": "state"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "wrong_protocol",
+      "request": {
+        "protocol_version": "3",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "INVALID_ENUM",
+              "field": "protocol_version"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "blank_page",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "  ",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "INVALID_FORMAT",
+              "field": "state.current_page"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "revision_overflow",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 9007199254740992,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "OUT_OF_RANGE",
+              "field": "state_revision"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "unknown_reason_input",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "complete",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "引导请求不符合 V2 接口约定。",
+          "details": [
+            {
+              "code": "INVALID_ENUM",
+              "field": "state.prosthesis_status"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ct_with_points",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "failed",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 1,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.ct_status"
+            }
+          ]
+        }
+      },
+      "invariant": "I01"
+    },
+    {
+      "id": "failed_without_error",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "failed",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.segmentation_error_code"
+            }
+          ]
+        }
+      },
+      "invariant": "I02"
+    },
+    {
+      "id": "stale_error",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": "SEG_ENGINE_FAILED",
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.segmentation_error_code"
+            }
+          ]
+        }
+      },
+      "invariant": "I02"
+    },
+    {
+      "id": "success_no_result",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "succeeded",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.segmentation_result_available"
+            }
+          ]
+        }
+      },
+      "invariant": "I03"
+    },
+    {
+      "id": "not_started_with_result",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": true,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.segmentation_result_available"
+            }
+          ]
+        }
+      },
+      "invariant": "I03"
+    },
+    {
+      "id": "ready_without_points",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.prosthesis_status"
+            }
+          ]
+        }
+      },
+      "invariant": "I04"
+    },
+    {
+      "id": "model_error_missing",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "failed",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.prosthesis_error_code"
+            }
+          ]
+        }
+      },
+      "invariant": "I05"
+    },
+    {
+      "id": "save_running_without_ready",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "running",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.save_status"
+            }
+          ]
+        }
+      },
+      "invariant": "I06"
+    },
+    {
+      "id": "saved_without_revision",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 3,
+          "prosthesis_status": "ready",
+          "prosthesis_error_code": null,
+          "plan_revision": 4,
+          "saved_plan_revision": null,
+          "save_status": "succeeded",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.saved_plan_revision"
+            }
+          ]
+        }
+      },
+      "invariant": "I07"
+    },
+    {
+      "id": "save_error_missing",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": null,
+          "save_status": "failed",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.save_error_code"
+            }
+          ]
+        }
+      },
+      "invariant": "I08"
+    },
+    {
+      "id": "future_saved_revision",
+      "request": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "state_revision": 12,
+        "state": {
+          "current_page": "page_selectPoint",
+          "ct_status": "succeeded",
+          "segmentation_status": "not_started",
+          "segmentation_result_available": false,
+          "segmentation_error_code": null,
+          "picked_point_count": 0,
+          "prosthesis_status": "absent",
+          "prosthesis_error_code": null,
+          "plan_revision": 0,
+          "saved_plan_revision": 1,
+          "save_status": "not_started",
+          "save_error_code": null
+        },
+        "supported_actions": [
+          "open_segmentation",
+          "open_point_picking",
+          "open_prosthesis_settings",
+          "focus_save_plan"
+        ]
+      },
+      "expected_status": 422,
+      "expected_response": {
+        "protocol_version": "2",
+        "request_id": "c62ef01e-8c51-44b9-a88a-e70c743bb80f",
+        "error": {
+          "code": "INCONSISTENT_STATE",
+          "message": "软件状态之间存在矛盾，请刷新状态后重试。",
+          "details": [
+            {
+              "code": "INCONSISTENT_STATE",
+              "field": "state.saved_plan_revision"
+            }
+          ]
+        }
+      },
+      "invariant": "I09"
+    }
+  ]
+}
