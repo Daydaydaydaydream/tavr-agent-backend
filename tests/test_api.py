@@ -75,6 +75,22 @@ def test_page_is_context_only(client):
     assert response.json()["next_action"] == "open_ct_import"
 
 
+def test_guidance_follows_qt_into_pick_page(client):
+    def guide(page):
+        response = client.post("/agent/guide", json={"state": {
+            "current_page": page, "ct_loaded": True,
+        }})
+        assert response.status_code == 200
+        return response.json()
+
+    assert guide("render")["next_action"] == "open_annulus_plane"
+    assert guide("annulus_pick") == {
+        "message": "已进入取点页面，请使用取点按钮。",
+        "next_action": None,
+    }
+    assert guide("navigation")["next_action"] == "open_annulus_plane"
+
+
 def test_requests_do_not_share_state(client):
     completed = client.post("/agent/guide", json={"state": {
         "ct_loaded": True, "annulus_plane_confirmed": True, "measurement_completed": True,

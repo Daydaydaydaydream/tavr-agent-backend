@@ -8,6 +8,8 @@ def _navigation_guidance(state: SoftwareState) -> GuideResponse:
     if not state.ct_loaded:
         return GuideResponse(message="请先导入 CT 影像。", next_action="open_ct_import")
     if not state.annulus_plane_confirmed:
+        if state.current_page == "annulus_pick":
+            return GuideResponse(message="已进入取点页面，请使用取点按钮。")
         return GuideResponse(
             message="请进入瓣环定位模块。", next_action="open_annulus_plane"
         )
