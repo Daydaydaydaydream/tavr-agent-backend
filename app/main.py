@@ -20,3 +20,8 @@ def health() -> dict[str, str]:
 @app.post("/agent/guide", response_model=GuideResponse, tags=["agent"])
 def guide(request: GuideRequest) -> GuideResponse:
     return generate_guidance(request.state)
+
+
+from app.routers.guide_v2 import router as guide_v2_router
+
+app.include_router(guide_v2_router)

@@ -1,0 +1,447 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TAVR Agent Backend",
+    "description": "用于学习的软件操作引导服务，不代表完整或经过临床验证的 TAVR 工作流程。",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Health Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agent/guide": {
+      "post": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Guide",
+        "operationId": "guide_agent_guide_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GuideRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/app__models__schemas__GuideResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/agent/guide": {
+      "post": {
+        "summary": "Guide V2",
+        "operationId": "guide_v2_api_v2_agent_guide_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "protocol_version": {
+                    "type": "string",
+                    "const": "2.1",
+                    "title": "Protocol Version"
+                  },
+                  "request_id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+                    "title": "Request Id"
+                  },
+                  "state_revision": {
+                    "type": "integer",
+                    "maximum": 9007199254740991.0,
+                    "minimum": 0.0,
+                    "title": "State Revision"
+                  },
+                  "state": {
+                    "properties": {
+                      "current_page": {
+                        "type": "string",
+                        "enum": [
+                          "render",
+                          "vessel_extract",
+                          "annulus_pick",
+                          "navigation",
+                          "reserved_4",
+                          "reserved_5"
+                        ],
+                        "title": "Current Page"
+                      },
+                      "ct_loaded": {
+                        "type": "boolean",
+                        "title": "Ct Loaded"
+                      },
+                      "picked_point_count": {
+                        "type": "integer",
+                        "maximum": 3.0,
+                        "minimum": 0.0,
+                        "title": "Picked Point Count"
+                      },
+                      "segmentation_status": {
+                        "type": "string",
+                        "enum": [
+                          "not_started",
+                          "running",
+                          "succeeded",
+                          "failed"
+                        ],
+                        "title": "Segmentation Status"
+                      },
+                      "segmentation_result_available": {
+                        "type": "boolean",
+                        "title": "Segmentation Result Available"
+                      },
+                      "prosthesis_status": {
+                        "type": "string",
+                        "enum": [
+                          "absent",
+                          "unknown",
+                          "available"
+                        ],
+                        "title": "Prosthesis Status"
+                      },
+                      "move_enabled": {
+                        "type": "boolean",
+                        "title": "Move Enabled"
+                      },
+                      "returned": {
+                        "type": "boolean",
+                        "title": "Returned"
+                      }
+                    },
+                    "additionalProperties": false,
+                    "type": "object",
+                    "required": [
+                      "current_page",
+                      "ct_loaded",
+                      "picked_point_count",
+                      "segmentation_status",
+                      "segmentation_result_available",
+                      "prosthesis_status",
+                      "move_enabled",
+                      "returned"
+                    ],
+                    "title": "WorkflowState"
+                  }
+                },
+                "additionalProperties": false,
+                "type": "object",
+                "required": [
+                  "protocol_version",
+                  "request_id",
+                  "state_revision",
+                  "state"
+                ],
+                "title": "GuideRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/app__models__schemas_v2__GuideResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Request too large"
+          },
+          "415": {
+            "description": "Unsupported media type"
+          },
+          "422": {
+            "description": "Invalid request or inconsistent state"
+          },
+          "500": {
+            "description": "Internal error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "GuideRequest": {
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/SoftwareState"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "state"
+        ],
+        "title": "GuideRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "SoftwareState": {
+        "properties": {
+          "current_page": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Current Page",
+            "default": "home"
+          },
+          "ct_loaded": {
+            "type": "boolean",
+            "title": "Ct Loaded",
+            "default": false
+          },
+          "annulus_plane_confirmed": {
+            "type": "boolean",
+            "title": "Annulus Plane Confirmed",
+            "default": false
+          },
+          "measurement_completed": {
+            "type": "boolean",
+            "title": "Measurement Completed",
+            "default": false
+          },
+          "segmentation_status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "not_started",
+                  "running",
+                  "succeeded",
+                  "failed"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Segmentation Status"
+          },
+          "segmentation_result_available": {
+            "type": "boolean",
+            "title": "Segmentation Result Available",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "SoftwareState",
+        "description": "A client-owned snapshot; omitted fields use conservative defaults."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "app__models__schemas__GuideResponse": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "next_action": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "open_ct_import",
+                  "open_annulus_plane",
+                  "open_measurement"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Action"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "GuideResponse"
+      },
+      "app__models__schemas_v2__GuideResponse": {
+        "properties": {
+          "protocol_version": {
+            "type": "string",
+            "const": "2.1",
+            "title": "Protocol Version"
+          },
+          "request_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "title": "Request Id"
+          },
+          "state_revision": {
+            "type": "integer",
+            "maximum": 9007199254740991.0,
+            "minimum": 0.0,
+            "title": "State Revision"
+          },
+          "rule_version": {
+            "type": "string",
+            "const": "rcviplan-prompts/2.1.0",
+            "title": "Rule Version"
+          },
+          "reason_code": {
+            "type": "string",
+            "enum": [
+              "CT_REQUIRED",
+              "SEGMENT_START",
+              "SEGMENT_RUNNING",
+              "SEGMENT_FAILED",
+              "SEGMENT_AVAILABLE",
+              "PICK_POINTS",
+              "POINTS_COMPLETE",
+              "RETURN_TO_POINTS",
+              "SET_PROSTHESIS",
+              "CHECK_PROSTHESIS",
+              "MOVE_PROSTHESIS",
+              "MOVING_PROSTHESIS",
+              "PROSTHESIS_RETURNED",
+              "ENTER_SEGMENTATION",
+              "NO_GUIDANCE"
+            ],
+            "title": "Reason Code"
+          },
+          "message": {
+            "type": "string",
+            "maxLength": 1024,
+            "minLength": 1,
+            "title": "Message"
+          },
+          "target_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "segment.auto_segment",
+                  "nav.next",
+                  "nav.back",
+                  "annulus.pick",
+                  "navigation.sent_setting",
+                  "navigation.sent_move",
+                  "navigation.sent_return"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "protocol_version",
+          "request_id",
+          "state_revision",
+          "rule_version",
+          "reason_code",
+          "message",
+          "target_id"
+        ],
+        "title": "GuideResponse"
+      }
+    }
+  }
+}

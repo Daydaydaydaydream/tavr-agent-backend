@@ -1,3 +1,14 @@
+# RCVI 操作提示后端
+
+当前实现：V1 规则接口及收窄后的 V2.1 页面提示接口。V2.1 使用已有状态生成单条文字和高亮目标。
+
+- [当前设计与验收](docs/contracts/planning-prompts-v2.1.md)
+- [V2.1 OpenAPI](docs/contracts/planning-prompts-v2.1.openapi.json)
+- 启动：`fastapi dev app/main.py --host 127.0.0.1 --port 8000`
+- 验证：`python -m pytest`
+- Qt 默认 v2；`RCVIPLAN_GUIDANCE_PROTOCOL=v1` 显式回退。
+- 旧 2.0.0 设计及夹具保留为历史资料，不是本版验收规范。
+
 # TAVR Agent Backend
 
 面向 Qt/C++ 桌面软件的操作引导后端。V1 根据软件状态返回下一步提示，使用确定性规则，不依赖大模型、数据库或外部服务。
@@ -57,4 +68,4 @@ python -m pytest
 - [正式接口设计（2.0.0）](docs/contracts/guide-v2-interface-design.md)：两端状态、HTTP 契约、Qt 内部接口及实现边界。
 - [OpenAPI 3.1](docs/contracts/guide-v2.openapi.yaml)、[共享验收样例](tests/fixtures/guide_v2/README.md)、[设计检查记录](docs/contracts/validation-report.md)。
 
-V2 当前仅完成设计，接口尚未实现；现有 V1 启动与调用方式不变。
+上述 2.0.0 为历史设计，当前接口使用 2.1 协议。
